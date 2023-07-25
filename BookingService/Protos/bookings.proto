@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "BookingService";
+
+message GetAllBookingsRequest {}
+
+message GrpcBookingModel {
+    int32 id = 1;
+    int32 flight_id = 2;
+    string customer_name = 3;
+    int32 number_of_passengers = 4;
+}
+
+message GetAllBookingsResponse {
+    repeated GrpcBookingModel bookings = 1;
+}
+
+service BookingGrpc {
+    rpc GetAllBookings (GetAllBookingsRequest) returns (GetAllBookingsResponse);
+}

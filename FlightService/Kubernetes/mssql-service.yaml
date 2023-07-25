@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: fs-mssql-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: fs-mssql
+  ports:
+  - name: fs-mssql
+    protocol: TCP
+    port: 1433
+    targetPort: 1433
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fs-mssql-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: fs-mssql
+  ports:
+  - protocol: TCP
+    port: 1433
+    targetPort: 1433

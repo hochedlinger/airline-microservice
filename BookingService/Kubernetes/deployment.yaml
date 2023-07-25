@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookingservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookingservice
+  template:
+    metadata:
+      labels:
+        app: bookingservice
+    spec:
+      containers:
+        - name: bookingservice
+          image: hochedlinger/bookingservice:latest
+          ports:
+            - containerPort: 80

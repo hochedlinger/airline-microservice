@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flightservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flightservice
+  template:
+    metadata:
+      labels:
+        app: flightservice
+    spec:
+      containers:
+        - name: flightservice
+          image: hochedlinger/flightservice:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 1

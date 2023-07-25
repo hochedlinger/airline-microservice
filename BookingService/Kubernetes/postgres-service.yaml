@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: bs-postgres-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: bs-postgres
+  ports:
+  - name: bs-postgres
+    protocol: TCP
+    port: 5432
+    targetPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bs-postgres-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: bs-postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

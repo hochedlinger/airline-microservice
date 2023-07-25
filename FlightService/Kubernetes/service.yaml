@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: flightservice-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: flightservice
+  ports:
+  - name: flightservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flightservice-nodeport
+spec:
+  type: NodePort
+  selector: 
+    app: flightservice
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80

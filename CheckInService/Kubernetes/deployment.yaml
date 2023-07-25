@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkinservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkinservice
+  template:
+    metadata:
+      labels:
+        app: checkinservice
+    spec:
+      containers:
+        - name: checkinservice
+          image: hochedlinger/checkinservice:latest
+          ports:
+            - containerPort: 80
